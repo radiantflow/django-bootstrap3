@@ -3,13 +3,14 @@
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}"{% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
   <head>
     <title>{% block bootstrap3_title %}{% endblock %}</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% bootstrap_css %}
     {% block extrastyle %}{% endblock %}
     {% block extrahead %}{% endblock %}
   </head>
   <body>
-    {% block bootstrap3_content %}{% endblock %}
+    {% block content %}{% endblock %}
     {% bootstrap_javascript jquery=True %}
     {% block extrajs %}{% endblock %}
   </body>
