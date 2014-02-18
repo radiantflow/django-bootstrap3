@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
+from django.templatetags.static import static
 
 # Default settings
 BOOTSTRAP3_DEFAULTS = {
@@ -11,6 +12,7 @@ BOOTSTRAP3_DEFAULTS = {
     'css_url': None,
     'theme_url': None,
     'javascript_url': None,
+    'modernizr_url' : None,
     'horizontal_label_class': 'col-md-2',
     'horizontal_field_class': 'col-md-4',
 }
@@ -41,6 +43,13 @@ def javascript_url():
     Return the full url to the Bootstrap JavaScript file
     """
     return BOOTSTRAP3['javascript_url'] or bootstrap_url('js/bootstrap.min.js')
+
+
+def modernizr_url():
+    """
+    Return the full url to the Modernizr JavaScript file
+    """
+    return BOOTSTRAP3['modernizr_url'] or static('js/bootstrap3/modernizr.min.js')
 
 
 def css_url():

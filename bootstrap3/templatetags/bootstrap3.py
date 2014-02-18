@@ -8,7 +8,7 @@ from django import template
 from django.template.loader import get_template
 from django.conf import settings
 
-from ..bootstrap import css_url, javascript_url, jquery_url
+from ..bootstrap import css_url, javascript_url, jquery_url, modernizr_url
 from ..forms import (render_button, render_field, render_field_and_label,
                      render_form, render_form_group, render_formset,
                      render_label)
@@ -71,9 +71,9 @@ def bootstrap_jquery_url():
 
 
 @register.simple_tag
-def bootstrap_javascript_url():
+def bootstrap_modernizr_url():
     """
-    Return the full url to FIXTHIS
+    Return the full url to modernizr js.
 
     Default value: ``None``
 
@@ -81,10 +81,33 @@ def bootstrap_javascript_url():
 
     **Tag name**::
         
-        bootstrap_javascript_url
+        bootstrap_modernizr_url
     
     **usage**::
     
+        {% bootstrap_modernizr_url %}
+
+    **example**::
+
+        {% bootstrap_modernizr_url %}
+    """
+    return modernizr_url()
+
+@register.simple_tag
+def bootstrap_javascript_url():
+    """
+    Return the full url to FIXTHIS
+
+    Default value: ``None``
+
+    this value is configurable, see Settings section
+
+    **Tag name**::
+
+        bootstrap_javascript_url
+
+    **usage**::
+
         {% bootstrap_javascript_url %}
 
     **example**::
@@ -92,6 +115,7 @@ def bootstrap_javascript_url():
         {% bootstrap_javascript_url %}
     """
     return javascript_url()
+
 
 
 @register.simple_tag
@@ -214,6 +238,35 @@ def bootstrap_javascript(jquery=False):
     if url:
         javascript += '<script src="{url}"></script>'.format(url=url)
     return javascript
+
+
+@register.simple_tag
+def bootstrap_modernizr():
+    """
+    Return HTML for Modernizr JavaScript
+    Adjust url in settings. If no url is returned, we don't want this statement to return any HTML.
+    This is intended behavior.
+
+    Default value: ``None``
+
+    this value is configurable, see Settings section
+
+    **Tag name**::
+
+        bootstrap_jquery
+
+    **usage**::
+
+        {% bootstrap_modernizr %}
+
+    **example**::
+
+        {% bootstrap_modernizr%}
+    """
+
+    url = bootstrap_modernizr_url()
+    if url:
+        return '<script src="{url}"></script>\n'.format(url=url)
 
 
 @register.simple_tag
