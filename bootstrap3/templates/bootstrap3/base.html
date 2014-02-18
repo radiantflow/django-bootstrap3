@@ -11,14 +11,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% bootstrap_css %}
-    {% block extrastyle %}{% endblock %}
-    {% block extrahead %}{% endblock %}
+    {% block extra_style %}{% endblock %}
+    {% block extra_head %}{% endblock %}
     {% bootstrap_modernizr %}
   </head>
-  <body>
-    {% block content %}{% endblock %}
+  <body class="{% block body_class %}{% endblock %}" {% block body_attrs %}{% endblock %}>
+    {% block body %}{% endblock %}
     {% bootstrap_jquery%}
     {% bootstrap_javascript %}
-    {% block extrajs %}{% endblock %}
+    {% block extra_js %}{% endblock %}
   </body>
 </html>
