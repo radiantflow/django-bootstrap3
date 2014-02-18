@@ -6,6 +6,7 @@ from math import floor
 
 from django import template
 from django.template.loader import get_template
+from django.conf import settings
 
 from ..bootstrap import css_url, javascript_url, jquery_url
 from ..forms import (render_button, render_field, render_field_and_label,
@@ -16,6 +17,34 @@ from ..templates import handle_var, parse_token_contents
 
 register = template.Library()
 
+@register.simple_tag
+def bootstrap_html_attrs():
+    """
+    **Tag name**::
+
+        bootstrap_html_attrs
+
+    Return a list of attributes for the html tag.
+
+    Default value: ``lang="en"``
+
+
+    **usage**::
+
+        {% bootstrap_html_attrs %}
+
+    **example**::
+
+        {% bootstrap_html_attrs %}
+    """
+    if hasattr(settings, 'LANGUAGE_CODE'):
+        lang = settings.LANGUAGE_CODE
+    else:
+        lang = 'en'
+    output = 'lang="%s"' % lang
+    if hasattr(settings, 'LANGUAGE_BIDI'):
+        output += ' dir="rtl"'
+    return output
 
 @register.simple_tag
 def bootstrap_jquery_url():

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 {% load bootstrap3 %}
-<html lang="{{ LANGUAGE_CODE|default:"en-us" }}"{% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" {% bootstrap_html_attrs %} > <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" {% bootstrap_html_attrs %}> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" {% bootstrap_html_attrs %}> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" {% bootstrap_html_attrs %}> <!--<![endif]-->
   <head>
     <title>{% block bootstrap3_title %}{% endblock %}</title>
     <meta charset="utf-8">
