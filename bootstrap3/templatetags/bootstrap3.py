@@ -148,6 +148,35 @@ def bootstrap_css():
 
 
 @register.simple_tag
+def bootstrap_jquery():
+    """
+    Return HTML for jQuery JavaScript
+    Adjust url in settings. If no url is returned, we don't want this statement to return any HTML.
+    This is intended behavior.
+
+    Default value: ``None``
+
+    this value is configurable, see Settings section
+
+    **Tag name**::
+
+        bootstrap_jquery
+
+    **usage**::
+
+        {% bootstrap_jquery %}
+
+    **example**::
+
+        {% bootstrap_jquery%}
+    """
+
+    url = bootstrap_jquery_url()
+    if url:
+      return '<script src="{url}"></script>\n'.format(url=url)
+
+
+@register.simple_tag
 def bootstrap_javascript(jquery=False):
     """
     Return HTML for Bootstrap JavaScript
